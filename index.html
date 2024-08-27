@@ -161,8 +161,8 @@
             <select id="operationSelect" onchange="updateContentVisibility()">
                 <option value="slice">切片</option>
                 <option value="merge">合成切片</option>
-                <option value="rename">替换（重命名）图片</option>
-                <option value="duplicate">复制图片</option>
+                <option value="rename">批量替换（重命名）图片|多图按顺序替换名字</option>
+                <option value="duplicate">复制图片|单图生成多文件同内容</option>
             </select>
         </form>
 
@@ -200,9 +200,13 @@
         </div>
     </div>
     <div id="duplicateContent" style="display:none;">
-        <input type="file" id="duplicateImageInput" accept="image/*">
-        <textarea id="duplicateNames" placeholder="输入新文件名，每行一个"></textarea>
-        <button onclick="processDuplicate()">复制图片|单图按生成多张名字内容相同</button>
+        <form>
+            <label for="duplicateImageInput">选择图片文件：</label>
+            <input type="file" id="duplicateImageInput" accept="image/*">
+            <label for="duplicateNames">输入新文件名：</label>
+            <textarea id="duplicateNames" placeholder="输入新文件名，每行一个"></textarea>
+            <button type="button" onclick="processDuplicate()">复制图片|单图生成多文件同内容</button>
+        </form>
     </div>
 
     <div id="output"></div>
@@ -224,6 +228,7 @@
             document.getElementById('sliceContent').style.display = 'none';
             document.getElementById('mergeContent').style.display = 'none';
             document.getElementById('renameContent').style.display = 'none';
+            document.getElementById('duplicateContent').style.display = 'none';
 
             var operation = document.getElementById('operationSelect').value;
             if (operation === 'slice') {
@@ -232,7 +237,10 @@
                 document.getElementById('mergeContent').style.display = 'block';
             } else if (operation === 'rename') {
                 document.getElementById('renameContent').style.display = 'block';
+            } else if (operation === 'duplicate') {
+                document.getElementById('duplicateContent').style.display = 'block';
             }
+            
         }
     </script>
 </body>
