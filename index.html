@@ -162,6 +162,7 @@
                 <option value="slice">切片</option>
                 <option value="merge">合成切片</option>
                 <option value="rename">替换（重命名）图片</option>
+                <option value="duplicate">复制图片</option>
             </select>
         </form>
 
@@ -194,9 +195,14 @@
                 <input type="file" id="renameImageInput" accept="image/*" multiple>
                 <label for="newNames">输入新文件名：</label>
                 <textarea id="newNames" placeholder="输入新文件名，每行一个"></textarea>
-                <button type="button" onclick="processRename()">替换（重命名）图片</button>
+                <button type="button" onclick="processRename()">批量替换（重命名）图片|多图按顺序替换名字</button>
             </form>
         </div>
+    </div>
+    <div id="duplicateContent" style="display:none;">
+        <input type="file" id="duplicateImageInput" accept="image/*">
+        <textarea id="duplicateNames" placeholder="输入新文件名，每行一个"></textarea>
+        <button onclick="processDuplicate()">复制图片|单图按生成多张名字内容相同</button>
     </div>
 
     <div id="output"></div>
@@ -209,7 +215,7 @@
     </div>
 
     <footer>
-        &copy; 2024 图片处理工具 | 由 <a href="#">孤傲</a> 强力驱动
+        &copy; 2024 图片处理工具 | 由 <a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=3567055800">孤傲</a> 强力驱动
     </footer>
 
     <script src="script.js"></script>
