@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>logo处理工具</title>
+    <title>图片处理工具</title>
     <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.13.2/dist/av-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -148,7 +148,7 @@
     </style>
 </head>
 <body>
-    <h1>logo处理工具</h1>
+    <h1>图片处理工具</h1>
     <form>
         <label for="authInput">输入授权码：</label>
         <input type="text" id="authInput" placeholder="输入授权码（下方二维码发送“卡密登陆”）">
@@ -162,7 +162,8 @@
                 <option value="slice">切片</option>
                 <option value="merge">合成切片</option>
                 <option value="rename">批量替换（重命名）图片|多图按顺序替换名字</option>
-                <option value="duplicate">复制图片|单图生成多文件同内容</option>
+                <option value="duplicate">复制图片|单图生成多文件同内容（输入框输入文件名）</option>
+                <option value="duplicateWithFiles">复制图片|单图生成多文件同内容（上传要修改的文件）</option>
             </select>
         </form>
 
@@ -208,6 +209,15 @@
             <button type="button" onclick="processDuplicate()">复制图片|单图生成多文件同内容</button>
         </form>
     </div>
+    <div id="duplicateWithFilesContent" style="display:none;">
+        <form>
+            <label for="mainImageInput">选择图片文件：</label>
+            <input type="file" id="mainImageInput" accept="image/*">
+            <label for="nameFilesInput">选择文件名文件（多选）：</label>
+            <input type="file" id="nameFilesInput" multiple>
+            <button type="button" onclick="processDuplicateWithFiles()">使用文件名复制图片</button>
+        </form>
+    </div>
 
     <div id="output"></div>
 
@@ -239,7 +249,9 @@
                 document.getElementById('renameContent').style.display = 'block';
             } else if (operation === 'duplicate') {
                 document.getElementById('duplicateContent').style.display = 'block';
-            }
+            } else if (operation === 'duplicateWithFiles') {
+            document.getElementById('duplicateWithFilesContent').style.display = 'block';
+        }
             
         }
     </script>
